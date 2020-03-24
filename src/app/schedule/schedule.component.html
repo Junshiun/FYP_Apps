@@ -1,0 +1,43 @@
+<br>
+<br/>
+<div>
+  <button (click)="Testing_01(13)">13</button>
+  <button (click)="Testing_01(14)">14</button>
+</div>
+
+<!--<div class = "example-button-row">
+  <button mat-button-toggle checked: boolean>Basic</button>
+</div>-->
+
+<mat-button-toggle 
+  [checked]="myFlagForButtonToggle" 
+  (change)="myFlagForButtonToggle = $event.source.checked">
+    Toggle me!
+</mat-button-toggle>
+
+<!--
+<mat-button-toggle-group [(ngModel)]="test01" multiple>
+  <mat-button-toggle value="bold">Bold</mat-button-toggle>
+</mat-button-toggle-group>-->
+
+<mat-button-toggle-group #group="matButtonToggleGroup">
+  <mat-button-toggle value="left">format_align_left</mat-button-toggle>
+  <mat-button-toggle value="justify">format_align_justify</mat-button-toggle>
+</mat-button-toggle-group>
+<div class="example-selected-value">Selected value: {{group.value}}</div>
+
+<div>
+  <mat-button-toggle #toggleBtn (change)="Testing_02(toggleBtn.checked, buttonId)">Toggle</mat-button-toggle>
+</div>
+
+<mat-button-toggle-group #Sunday="matButtonToggleGroup" name="Sunday" multiple>
+  <mat-button-toggle #T0000 (change)="OperatingTime_Day_Update(T0000.checked, Sunday.name)">00:00</mat-button-toggle>
+  <mat-button-toggle #T0100 (change)="OperatingTime_Day_Update(T0100.checked, Sunday.name)">01:00</mat-button-toggle>
+</mat-button-toggle-group>
+<div>{{Sunday.name}}</div>
+
+<mat-button-toggle-group #Monday="matButtonToggleGroup" name="Monday" multiple>
+  <mat-button-toggle #q0000 (change)="OperatingTime_Day_Update(q0000.checked, Monday.name)">00:00</mat-button-toggle>
+  <mat-button-toggle #q0100 (change)="OperatingTime_Day_Update(q0100.checked, Monday.name)">01:00</mat-button-toggle>
+</mat-button-toggle-group>
+<div>{{Monday.name}}</div>
