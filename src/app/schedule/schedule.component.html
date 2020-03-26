@@ -1,5 +1,6 @@
 <br>
 <br/>
+
 <div>
   <button (click)="Testing_01(13)">13</button>
   <button (click)="Testing_01(14)">14</button>
@@ -41,3 +42,7 @@
   <mat-button-toggle #q0100 (change)="OperatingTime_Day_Update(q0100.checked, Monday.name)">01:00</mat-button-toggle>
 </mat-button-toggle-group>
 <div>{{Monday.name}}</div>
+
+<ng5-slider [(value)]="PeakHourStartTimeArray[4]" [(highValue)]="highValue" [options]="options" (userChange)="Day_PeakHour_Update('Monday',$event)"></ng5-slider>
+<div>{{PeakHourStartTimeArray[0]}}</div>
+<mat-button-toggle (change)="myprint()">halo</mat-button-toggle>

@@ -20,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule, MatButtonToggleModule } from '@angular/material';
 
+import { Ng5SliderModule } from 'ng5-slider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import { MatButtonModule, MatButtonToggleModule } from '@angular/material';
     BrowserAnimationsModule,
     MatButtonModule,
     MatButtonToggleModule,
+    Ng5SliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
