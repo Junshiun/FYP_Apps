@@ -1,25 +1,14 @@
-<br>
-<br/>
-
+<!--
 <div>
   <button (click)="Testing_01(13)">13</button>
   <button (click)="Testing_01(14)">14</button>
 </div>
-
-<!--<div class = "example-button-row">
-  <button mat-button-toggle checked: boolean>Basic</button>
-</div>-->
 
 <mat-button-toggle 
   [checked]="myFlagForButtonToggle" 
   (change)="myFlagForButtonToggle = $event.source.checked">
     Toggle me!
 </mat-button-toggle>
-
-<!--
-<mat-button-toggle-group [(ngModel)]="test01" multiple>
-  <mat-button-toggle value="bold">Bold</mat-button-toggle>
-</mat-button-toggle-group>-->
 
 <mat-button-toggle-group #group="matButtonToggleGroup">
   <mat-button-toggle value="left">format_align_left</mat-button-toggle>
@@ -42,7 +31,159 @@
   <mat-button-toggle #q0100 (change)="OperatingTime_Day_Update(q0100.checked, Monday.name)">01:00</mat-button-toggle>
 </mat-button-toggle-group>
 <div>{{Monday.name}}</div>
+-->
 
-<ng5-slider [(value)]="PeakHourStartTimeArray[4]" [(highValue)]="highValue" [options]="options" (userChange)="Day_PeakHour_Update('Monday',$event)"></ng5-slider>
-<div>{{PeakHourStartTimeArray[0]}}</div>
-<mat-button-toggle (change)="myprint()">halo</mat-button-toggle>
+
+<br/>
+
+<div class="Sunday">
+  <b>Sunday</b>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay02(0)>Operation Hours</button>
+    is from {{OperationHourStartTimeArray[0]}}:00 to {{OperationHourEndTimeArray[0]}}:00
+  </p>
+  <div [hidden] = "hide02[0]">
+    <ng5-slider [(value)]="OperationHourStartTimeArray[0]" [(highValue)]="OperationHourEndTimeArray[0]" [options]="options" (userChange)="Day_OperationHour_Update('Sunday',$event)"></ng5-slider>
+  </div>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay(0)>Peak Hours</button>
+    is from {{PeakHourStartTimeArray[0]}}:00 to {{PeakHourEndTimeArray[0]}}:00
+  </p>
+  <div [hidden] = "hide[0]">
+    <ng5-slider [(value)]="PeakHourStartTimeArray[0]" [(highValue)]="PeakHourEndTimeArray[0]" [options]="options" (userChange)="Day_PeakHour_Update('Sunday',$event)"></ng5-slider>
+  </div>
+</div>
+
+<br/><br/>
+
+<div class="Monday">
+  <b>Monday</b>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay02(1)>Operation Hours</button>
+    is from {{OperationHourStartTimeArray[1]}}:00 to {{OperationHourEndTimeArray[1]}}:00
+  </p>
+  <div [hidden] = "hide02[1]">
+    <ng5-slider [(value)]="OperationHourStartTimeArray[1]" [(highValue)]="OperationHourEndTimeArray[1]" [options]="options" (userChange)="Day_OperationHour_Update('Monday',$event)"></ng5-slider>
+  </div>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay(1)>Peak Hours</button>
+    is from {{PeakHourStartTimeArray[1]}}:00 to {{PeakHourEndTimeArray[1]}}:00
+  </p>
+  <div [hidden] = "hide[1]">  
+    <ng5-slider [(value)]="PeakHourStartTimeArray[1]" [(highValue)]="PeakHourEndTimeArray[1]" [options]="options" (userChange)="Day_PeakHour_Update('Monday',$event)"></ng5-slider>
+  </div>
+</div>
+
+<br/><br/>
+
+<div class="Tuesday">
+  <b>Tuesday</b>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay02(2)>Operation Hours</button>
+    is from {{OperationHourStartTimeArray[2]}}:00 to {{OperationHourEndTimeArray[2]}}:00
+  </p>
+  <div [hidden] = "hide02[2]">
+    <ng5-slider [(value)]="OperationHourStartTimeArray[2]" [(highValue)]="OperationHourEndTimeArray[2]" [options]="options" (userChange)="Day_OperationHour_Update('Tuesday',$event)"></ng5-slider>
+  </div>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay(2)>Peak Hours</button>
+    is from {{PeakHourStartTimeArray[2]}}:00 to {{PeakHourEndTimeArray[2]}}:00
+  </p>
+  <div [hidden] = "hide[2]"> 
+    <ng5-slider [(value)]="PeakHourStartTimeArray[2]" [(highValue)]="PeakHourEndTimeArray[2]" [options]="options" (userChange)="Day_PeakHour_Update('Tuesday',$event)"></ng5-slider>
+  </div> 
+</div>
+
+<br/><br/>
+
+<div class="Wednesday">
+  <b>Wednesday</b>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay02(3)>Operation Hours</button>
+    is from {{OperationHourStartTimeArray[3]}}:00 to {{OperationHourEndTimeArray[3]}}:00
+  </p>
+  <div [hidden] = "hide02[3]">
+    <ng5-slider [(value)]="OperationHourStartTimeArray[3]" [(highValue)]="OperationHourEndTimeArray[3]" [options]="options" (userChange)="Day_OperationHour_Update('Wednesday',$event)"></ng5-slider>
+  </div>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay(3)>Peak Hours</button>
+    is from {{PeakHourStartTimeArray[3]}}:00 to {{PeakHourEndTimeArray[3]}}:00
+  </p>
+  <div [hidden] = "hide[3]">
+    <ng5-slider [(value)]="PeakHourStartTimeArray[3]" [(highValue)]="PeakHourEndTimeArray[3]" [options]="options" (userChange)="Day_PeakHour_Update('Wednesday',$event)"></ng5-slider>
+  </div>
+</div>
+
+<br/><br/>
+
+<div class="Thursday">
+  <b>Thursday</b>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay02(4)>Operation Hours</button>
+    is from {{OperationHourStartTimeArray[4]}}:00 to {{OperationHourEndTimeArray[4]}}:00
+  </p>
+  <div [hidden] = "hide02[4]">
+    <ng5-slider [(value)]="OperationHourStartTimeArray[4]" [(highValue)]="OperationHourEndTimeArray[4]" [options]="options" (userChange)="Day_OperationHour_Update('Thursday',$event)"></ng5-slider>
+  </div>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay(4)>Peak Hours</button>
+    is from {{PeakHourStartTimeArray[4]}}:00 to {{PeakHourEndTimeArray[4]}}:00
+  </p>
+  <div [hidden] = "hide[4]">
+    <ng5-slider [(value)]="PeakHourStartTimeArray[4]" [(highValue)]="PeakHourEndTimeArray[4]" [options]="options" (userChange)="Day_PeakHour_Update('Thursday',$event)"></ng5-slider>
+  </div>
+</div>
+
+<br/><br/>
+
+<div class="Friday">
+  <b>Friday</b>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay02(5)>Operation Hours</button>
+    is from {{OperationHourStartTimeArray[5]}}:00 to {{OperationHourEndTimeArray[5]}}:00
+  </p>
+  <div [hidden] = "hide02[5]">
+    <ng5-slider [(value)]="OperationHourStartTimeArray[5]" [(highValue)]="OperationHourEndTimeArray[5]" [options]="options" (userChange)="Day_OperationHour_Update('Friday',$event)"></ng5-slider>
+  </div>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay(5)>Peak Hours</button>
+    is from {{PeakHourStartTimeArray[5]}}:00 to {{PeakHourEndTimeArray[5]}}:00
+  </p>
+  <div [hidden] = "hide[5]">
+    <ng5-slider [(value)]="PeakHourStartTimeArray[5]" [(highValue)]="PeakHourEndTimeArray[5]" [options]="options" (userChange)="Day_PeakHour_Update('Friday',$event)"></ng5-slider>
+  </div>
+</div>
+
+<br/><br/>
+
+<div name="Saturday">
+  <b>Saturday</b>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay02(6)>Operation Hours</button>
+    is from {{OperationHourStartTimeArray[6]}}:00 to {{OperationHourEndTimeArray[6]}}:00
+  </p>
+  <div [hidden] = "hide02[6]">
+    <ng5-slider [(value)]="OperationHourStartTimeArray[6]" [(highValue)]="OperationHourEndTimeArray[6]" [options]="options" (userChange)="Day_OperationHour_Update('Saturday',$event)"></ng5-slider>
+  </div>
+  <br/>
+  <p>
+    <button (click) = toggleDisplay(6)>Peak Hours</button>
+    is from {{PeakHourStartTimeArray[6]}}:00 to {{PeakHourEndTimeArray[6]}}:00
+  </p>
+  <div [hidden] = "hide[6]">
+    <ng5-slider [(value)]="PeakHourStartTimeArray[6]" [(highValue)]="PeakHourEndTimeArray[6]" [options]="options" (userChange)="Day_PeakHour_Update('Saturday',$event)"></ng5-slider>
+  </div>
+  </div>
