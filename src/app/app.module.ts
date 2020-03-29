@@ -22,6 +22,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatButtonToggleModule } from '@angular/material';
 
 import { Ng5SliderModule } from 'ng5-slider';
+import { NewChartComponent } from './new-chart/new-chart.component';
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,7 @@ import { Ng5SliderModule } from 'ng5-slider';
     ChartComponent,
     HomeComponent,
     ScheduleComponent,
+    NewChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +46,10 @@ import { Ng5SliderModule } from 'ng5-slider';
     BrowserAnimationsModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatMomentDateModule,
     Ng5SliderModule,
     FormsModule,
   ],
