@@ -1,9 +1,19 @@
+<br/>
+
 <mat-form-field>
-  <mat-label>Input & change events</mat-label>
-  <input matInput [matDatepicker]="picker"
+  <mat-label>From</mat-label>
+  <input matInput [matDatepicker]="picker1"
          (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>To</mat-label>
+  <input matInput [matDatepicker]="picker2"
+         (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker #picker2></mat-datepicker>
 </mat-form-field>
 
 <div class="example-events">
@@ -12,8 +22,8 @@
 
 <div>
     <canvas id="linechart"></canvas>
-  </div>
+</div>
   
-  <div>
+<div>
     <p>Hello</p>
-  </div>
+</div>
