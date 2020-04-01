@@ -31,11 +31,14 @@ export class NewChartComponent implements OnInit {
   CurrentMonth: any;
   CurrentDate: any;
 
+  condition: true;
+
   NodeArray1: any[] = [1, 2];
   NodeArray2: any[] = [3, 4];
   NodeArray: any[] = [this.NodeArray2, this.NodeArray1];
 
   constructor(public db: AngularFireDatabase) {
+    this.checkforupdate();
   }
 
   ngOnInit() {
@@ -81,10 +84,32 @@ export class NewChartComponent implements OnInit {
     console.log(secondpromise);
   }*/
 
+  checkforupdate() {
+    for (let i = 0; i < 3; i++) {
+      this.Current = ('Data/' + this.CurrentYear + '/' + this.CurrentMonth + '/' + this.CurrentDate + '/Node_' + (i + 1));
+      const leadsRef =  firebase.database().ref(this.Current);
+      // tslint:disable-next-line: only-arrow-functions
+      leadsRef.on('value', (snapshot) => {
+        this.dataArray[i].splice(0, this.dataArray[i].length);
+          // tslint:disable-next-line: only-arrow-functions
+        snapshot.forEach((childSnapshot) => {
+          let childData = childSnapshot.val();
+          if (childData === -1) {
+            childData = 'null';
+          }
+          const childData02 = childSnapshot.key;
+          this.dataArray[i].push({x: childData02, y: childData});
+        });
+        this.mychart(this.dataArray);
+      });
+    }
+  }
+
   async thisFunction() {
     const firstpromise = await this.Promise01();
     const secondpromise = await this.Promise02();
     const thirdpromise = await this.Promise03(this.dataArray);
+    const fourthpromise = await this.Promise04();
   }
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
@@ -132,7 +157,16 @@ export class NewChartComponent implements OnInit {
       // tslint:disable-next-line: only-arrow-functions
       setTimeout(function() {
         resolve();
+        this.condition = true;
         }, 1000);
+    });
+  }
+
+  Promise04() {
+    return new Promise(resolve => {
+      this.checkforupdate();
+      // tslint:disable-next-line: only-arrow-functions
+      resolve();
     });
   }
 
@@ -154,7 +188,7 @@ export class NewChartComponent implements OnInit {
           // tslint:disable-next-line: only-arrow-functions
         snapshot.forEach((childSnapshot) => {
           let childData = childSnapshot.val();
-          if (childData === 0) {
+          if (childData === -1) {
             childData = 'null';
           }
           const childData02 = childSnapshot.key;
@@ -217,9 +251,4 @@ export class NewChartComponent implements OnInit {
     });
   }
 
-  timeout() {
-    // tslint:disable-next-line: only-arrow-functions
-    setTimeout(function() {
-    }, 5000);
-  }
 }
