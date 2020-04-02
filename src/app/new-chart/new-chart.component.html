@@ -1,20 +1,17 @@
 <br/>
 
 <mat-form-field>
-  <mat-label>From</mat-label>
+  <mat-label>Date</mat-label>
   <input matInput [matDatepicker]="picker1"
-         (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+         (dateInput)="CalendarEvent('input', $event)" (dateChange)="CalendarEvent('change', $event)">
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker #picker1></mat-datepicker>
 </mat-form-field>
 
-<mat-form-field>
-  <mat-label>To</mat-label>
-  <input matInput [matDatepicker]="picker2"
-         (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
-  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-  <mat-datepicker #picker2></mat-datepicker>
-</mat-form-field>
+<button (click) = OnCheck()>Check</button>
+
+<br/>
+<button (click) = thisFunction()>Realtime Data</button>
 
 <div class="example-events">
   <div *ngFor="let e of events">{{e}}</div>

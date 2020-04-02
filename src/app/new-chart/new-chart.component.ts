@@ -19,6 +19,7 @@ export class NewChartComponent implements OnInit {
   Linechart: Chart;
 
   dataArray: any[] = [[{}], [{}], [{}]];
+  dataArray02: any[] = [[{}], [{}], [{}]];
   wholedate: string[] = ['order'];
   monthsArray: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   date: string;
@@ -103,6 +104,28 @@ export class NewChartComponent implements OnInit {
         this.mychart(this.dataArray);
       });
     }
+    console.log(this.dataArray);
+  }
+
+  checkforupdate02() {
+    for (let i = 0; i < 3; i++) {
+      this.Current = ('Data/' + this.year + '/' + this.month + '/' + this.date + '/Node_' + (i + 1));
+      const leadsRef =  firebase.database().ref(this.Current);
+      // tslint:disable-next-line: only-arrow-functions
+      leadsRef.on('value', (snapshot) => {
+        this.dataArray02[i].splice(0, this.dataArray02[i].length);
+          // tslint:disable-next-line: only-arrow-functions
+        snapshot.forEach((childSnapshot) => {
+          let childData = childSnapshot.val();
+          if (childData === -1) {
+            childData = 'null';
+          }
+          const childData02 = childSnapshot.key;
+          this.dataArray02[i].push({x: childData02, y: childData});
+        });
+        this.mychart(this.dataArray02);
+      });
+    }
   }
 
   async thisFunction() {
@@ -112,7 +135,7 @@ export class NewChartComponent implements OnInit {
     const fourthpromise = await this.Promise04();
   }
 
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+  CalendarEvent(type: string, event: MatDatepickerInputEvent<Date>) {
     this.wholedate.splice(0, this.wholedate.length);
     this.wholedate = (`${event.value}`).split(' ', 4);
     console.log(this.wholedate);
@@ -121,6 +144,10 @@ export class NewChartComponent implements OnInit {
     this.month = (this.monthsArray.indexOf(this.month) + 1).toString();
     this.year = this.wholedate[3];
     console.log(this.date + '/' + this.month + '/' + this.year);
+  }
+
+  OnCheck() {
+    this.checkforupdate02();
   }
 
   Upload() {
@@ -200,6 +227,9 @@ export class NewChartComponent implements OnInit {
   }
 
   mychart(key) {
+    if (this.Linechart) {
+      this.Linechart.destroy();
+    }
     this.Linechart = new Chart('linechart', {
       type: 'scatter',
       plugins: [ChartAnnotation],
@@ -223,7 +253,7 @@ export class NewChartComponent implements OnInit {
           },
           {
             label: 'Node 3',
-            data: key[2].slice(180),
+            data: key[2].slice(-180),
             showLine: true,
             fill: false,
             borderColor: 'rgba(206, 17, 17)',
