@@ -1,0 +1,21 @@
+<br/>
+
+<mat-form-field>
+    <mat-label>From</mat-label>
+    <input matInput [matDatepicker]="picker1"
+          (dateChange)="CalendarEvent(1,'change', $event)">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>To</mat-label>
+    <input matInput [matDatepicker]="picker2"
+           (dateChange)="CalendarEvent(2,'change', $event)">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+</mat-form-field>
+
+<div>
+  <canvas id="linechart"></canvas>
+</div>

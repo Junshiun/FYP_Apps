@@ -5,12 +5,14 @@ import { ChartComponent } from './chart/chart.component';
 import { HomeComponent } from './home/home.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { NewChartComponent } from './new-chart/new-chart.component';
+import { CompareComponent } from './compare/compare.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'Chart', component: ChartComponent},
   {path: 'Schedule', component: ScheduleComponent},
   {path: 'newChart', component: NewChartComponent},
+  {path: 'Compare', component: CompareComponent},
 ];
 
 @NgModule({

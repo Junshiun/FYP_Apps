@@ -29,6 +29,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
+import { CompareComponent } from './compare/compare.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     HomeComponent,
     ScheduleComponent,
     NewChartComponent,
+    CompareComponent,
   ],
   imports: [
     BrowserModule,
