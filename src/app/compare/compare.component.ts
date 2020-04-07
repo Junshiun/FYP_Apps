@@ -24,24 +24,69 @@ export class CompareComponent implements OnInit {
   month: any;
   year: any;
 
+  FromDate: any;
+  FromMonth: any;
+  FromYear: any;
+  ToDate: any;
+  ToMonth: any;
+  ToYear: any;
+
+  FromThisDate: string;
+  ToThisDate: string;
+
   // tslint:disable-next-line: max-line-length
   dataArray: any[] = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
   SumData = 0;
   SumDataArray: any[] = [];
   AverageDataArray: any[] = [];
+  MaxDataArray: any[] = [];
 
   From: string;
+
+  // tslint:disable-next-line: max-line-length
+  ChartDataAverage: any[] = [];
+  ChartDataMax: any[] = [];
 
   constructor(public db: AngularFireDatabase) {
   }
 
   ngOnInit() {
+  }
+
+  thisFunction() {
     this.ChartDataDate();
+    this.PromiseFunction();
+  }
+
+  async PromiseFunction() {
+    const firstpromise = await this.Promise01();
+    const secondpromise = await this.Promise02();
+  }
+
+  Promise01() {
+    return new Promise(resolve => {
+      // tslint:disable-next-line: only-arrow-functions
+      setTimeout(function() {
+        resolve();
+        }, 3000);
+    });
+  }
+
+  Promise02() {
+    return new Promise(resolve => {
+      console.log(this.ChartDataAverage);
+      console.log(this.ChartDataMax);
+      this.mychart(this.ChartDataAverage, this.ChartDataMax);
+      // tslint:disable-next-line: only-arrow-functions
+      setTimeout(function() {
+        resolve();
+        }, 1000);
+    });
   }
 
   ChartDataDate() {
-    const startdate = new Date('3/29/2020');
-    const enddate = new Date('3/31/2020');
+    const startdate = new Date(this.FromThisDate);
+    const enddate = new Date(this.ToThisDate);
     console.log(startdate);
     for (const i = startdate ; startdate <= enddate; i.setDate(startdate.getDate() + 1)) {
       console.log('round' + i);
@@ -54,11 +99,11 @@ export class CompareComponent implements OnInit {
       const yyyy = startdate.getFullYear();
       const date = dd + '/' + mm + '/' + yyyy;*/
 
-      this.ChartDataNode(this.date);
+      this.ChartDataNode(this.date, this.month, this.year);
     }
   }
 
-  ChartDataNode(date: any) {
+  ChartDataNode(date: any, month: any, year: any) {
     this.dataArray[date].splice(0, this.dataArray[date].length);
     for (let i = 0; i < 3; i++) {
       this.From = ('Data/' + this.year + '/' + this.month + '/' + this.date + '/Node_' + (i + 1));
@@ -74,65 +119,67 @@ export class CompareComponent implements OnInit {
           }
           this.dataArray[date].push(childData);
         });
-        this.Calculation(date);
+        this.Calculation(date, month, year);
       });
     }
   }
 
-  Calculation(date: any) {
-    console.log(this.dataArray[date]);
+  Calculation(date: any, month: any, year: any) {
     this.SumDataArray[date] = this.dataArray[date].reduce((a, b) => (a + b), 0);
-    console.log(this.SumDataArray[date]);
-    this.AverageDataArray[date] = (this.SumDataArray[date] / this.dataArray[date].length);
-    console.log(this.AverageDataArray[date]);
-  }
-
-  CalendarEvent(datepicker: any, type: string, event: MatDatepickerInputEvent<Date>) {
-    for ( let i = datepicker; i < datepicker + 1 ; i++ ) {
-      this.wholedate.splice(0, this.wholedate.length);
-      this.wholedate = (`${event.value}`).split(' ', 4);
-      console.log(this.wholedate);
-      this.date[i] = this.wholedate[2];
-      this.month[i] = this.wholedate[1];
-      this.month[i] = (this.monthsArray.indexOf(this.month[i]) + 1).toString();
-      this.year[i] = this.wholedate[3];
-      console.log(this.date[i] + this.month[i] + this.year[i]);
-      console.log(this.date[1] + this.month[1] + this.year[1]);
+    this.AverageDataArray[date] = (this.SumDataArray[date] / this.dataArray[date].length).toFixed(2);
+    this.MaxDataArray[date] = Math.max.apply(Math, this.dataArray[date]).toFixed(2);
+    if (this.dataArray[date].length === 0) {
+      this.MaxDataArray[date] = null;
     }
+    this.ChartDataAverage[date] = {x: date, y: this.AverageDataArray[date]};
+    this.ChartDataMax[date] = {x: date, y: this.MaxDataArray[date]};
   }
 
+  CalendarEvent01(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.wholedate.splice(0, this.wholedate.length);
+    this.wholedate = (`${event.value}`).split(' ', 4);
+    console.log(this.wholedate);
+    this.FromDate = this.wholedate[2];
+    this.FromMonth = this.wholedate[1];
+    this.FromMonth = (this.monthsArray.indexOf(this.FromMonth) + 1).toString();
+    this.FromYear = this.wholedate[3];
+    this.FromThisDate = this.FromMonth + '/' + this.FromDate + '/' + this.FromYear;
+  }
 
-  mychart(key) {
+  CalendarEvent02(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.wholedate.splice(0, this.wholedate.length);
+    this.wholedate = (`${event.value}`).split(' ', 4);
+    console.log(this.wholedate);
+    this.ToDate = this.wholedate[2];
+    this.ToMonth = this.wholedate[1];
+    this.ToMonth = (this.monthsArray.indexOf(this.ToMonth) + 1).toString();
+    this.ToYear = this.wholedate[3];
+    this.ToThisDate = this.ToMonth + '/' + this.ToDate + '/' + this.ToYear;
+  }
+
+  mychart(key, key02) {
     if (this.Linechart) {
       this.Linechart.destroy();
     }
     this.Linechart = new Chart('linechart', {
-      type: 'line',
+      type: 'scatter',
       plugins: [ChartAnnotation],
       data: {
         datasets: [
           {
-            label: 'Node 1',
-            data: [{x: 10, y: 11}, {x: 3, y: 3}],
+            label: 'Average',
+            data: key,
             showLine: true,
             fill: false,
             borderColor: 'rgba(0, 200, 0, 1)',
             lineTension: 0
           },
           {
-            label: 'Node 2',
-            data: key,
+            label: 'Max',
+            data: key02,
             showLine: true,
             fill: false,
             borderColor: 'rgba(46, 134, 178)',
-            lineTension: 0
-          },
-          {
-            label: 'Node 3',
-            data: key,
-            showLine: true,
-            fill: false,
-            borderColor: 'rgba(206, 17, 17)',
             lineTension: 0
           },
         ]
@@ -147,6 +194,12 @@ export class CompareComponent implements OnInit {
           intersect: true
         },
         scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: false,
+              stepSize: 1,
+            }
+          }],
           yAxes: [{
             ticks: {
               beginAtZero: true
