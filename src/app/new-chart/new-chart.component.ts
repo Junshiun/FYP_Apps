@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Chart, ChartOptions } from 'chart.js';
 import { AngularFireDatabase } from '@angular/fire/database';
 import 'firebase/database';
 import * as ChartAnnotation from 'chartjs-plugin-annotation';
@@ -38,12 +38,16 @@ export class NewChartComponent implements OnInit {
   NodeArray2: any[] = [3, 4];
   NodeArray: any[] = [this.NodeArray2, this.NodeArray1];
 
+  MinDate: Date;
+
   constructor(public db: AngularFireDatabase) {
+    this.MinDate = new Date('3/1/2020');
     this.checkforupdate();
   }
 
   ngOnInit() {
     this.thisFunction();
+    this.Upload();
   }
 
   /*
@@ -152,8 +156,8 @@ export class NewChartComponent implements OnInit {
 
   Upload() {
     for (let i = 0; i <= 30; i++) {
-      firebase.database().ref('Data/2020/3/31/Node_1/' + i).set(1.92 + (0.01 * i));
-      firebase.database().ref('Data/2020/3/31/Node_2/' + i).set(1.34 + (0.02 * i));
+      firebase.database().ref('Data/2020/3/30/Node_1/' + i).set(1.91 + (0.04 * i));
+      firebase.database().ref('Data/2020/3/30/Node_3/' + i).set(1.50 + (0.03 * i));
     }
   }
 
@@ -262,6 +266,18 @@ export class NewChartComponent implements OnInit {
         ]
       },
       options: {
+        annotation: {
+            annotations: [
+                {
+                  type: 'line',
+                  mode: 'horizontal',
+                  scaleID: 'y-axis-1',
+                  value: 1,  // data-value at which the line is drawn
+                  borderWidth: 2,
+                  borderColor: 'red',
+                }
+            ]
+        },
         tooltips: {
           mode: 'index',
           intersect: false,
@@ -277,7 +293,7 @@ export class NewChartComponent implements OnInit {
             }
           }]
         },
-      }
+      } as ChartOptions
     });
   }
 

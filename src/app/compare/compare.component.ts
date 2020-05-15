@@ -47,7 +47,11 @@ export class CompareComponent implements OnInit {
   ChartDataAverage: any[] = [];
   ChartDataMax: any[] = [];
 
+  MinDate: Date;
+  MaxDate: Date;
+
   constructor(public db: AngularFireDatabase) {
+    this.MinDate = new Date('3/1/2020');
   }
 
   ngOnInit() {
@@ -185,6 +189,18 @@ export class CompareComponent implements OnInit {
         ]
       },
       options: {
+        annotation: {
+            annotations: [
+                {
+                  type: 'line',
+                  mode: 'horizontal',
+                  scaleID: 'y-axis-1',
+                  value: 1,  // data-value at which the line is drawn
+                  borderWidth: 2,
+                  borderColor: 'red',
+                }
+            ]
+        },
         tooltips: {
           mode: 'index',
           intersect: false,

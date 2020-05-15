@@ -16,7 +16,7 @@ import { Options, LabelType, ChangeContext } from 'ng5-slider';
 
 export class ScheduleComponent implements OnInit {
 
-  constructor(db: AngularFireDatabase, private router: Router) {
+  constructor(private router: Router, db: AngularFireDatabase) {
     this.GetValue_Firebase();
   }
 

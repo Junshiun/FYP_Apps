@@ -68,7 +68,7 @@ export class ChartComponent implements OnInit {
                     id: 'hLine',
                     mode: 'horizontal',
                     scaleID: 'y-axis-0',
-                    value: 1.88,  // data-value at which the line is drawn
+                    value: 0.5,  // data-value at which the line is drawn
                     borderWidth: 4,
                     borderColor: '#3e95cd',
                   }

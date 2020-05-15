@@ -2,7 +2,7 @@
 
 <mat-form-field>
     <mat-label>From</mat-label>
-    <input matInput [matDatepicker]="picker1"
+    <input matInput [min]="MinDate" [max]="MaxDate" [matDatepicker]="picker1"
           (dateChange)="CalendarEvent01('change', $event)">
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
@@ -10,7 +10,7 @@
 
 <mat-form-field>
     <mat-label>To</mat-label>
-    <input matInput [matDatepicker]="picker2"
+    <input matInput [min]="MinDate" [matDatepicker]="picker2"
            (dateChange)="CalendarEvent02('change', $event)">
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>

@@ -8,15 +8,15 @@ import { NewChartComponent } from './new-chart/new-chart.component';
 import { CompareComponent } from './compare/compare.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: ScheduleComponent},
   {path: 'Chart', component: ChartComponent},
   {path: 'Schedule', component: ScheduleComponent},
-  {path: 'newChart', component: NewChartComponent},
+  {path: 'Daily', component: NewChartComponent},
   {path: 'Compare', component: CompareComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 

@@ -52,7 +52,7 @@
     is from {{PeakHourStartTimeArray[0]}}:00 to {{PeakHourEndTimeArray[0]}}:00
   </p>
   <div [hidden] = "hide[0]">
-    <ng5-slider [(value)]="PeakHourStartTimeArray[0]" [(highValue)]="PeakHourEndTimeArray[0]" [options]="options" (userChange)="Day_PeakHour_Update('Sunday',$event)"></ng5-slider>
+    <ng5-slider [(value)]="PeakHourStartTimeArray[0]" [(highValue)]= "PeakHourEndTimeArray[0]" [options]="options" (userChange)="Day_PeakHour_Update('Sunday',$event)"></ng5-slider>
   </div>
 </div>
 

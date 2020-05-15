@@ -2,7 +2,7 @@
 
 <mat-form-field>
   <mat-label>Date</mat-label>
-  <input matInput [matDatepicker]="picker1"
+  <input matInput [min]="MinDate" [matDatepicker]="picker1"
          (dateInput)="CalendarEvent('input', $event)" (dateChange)="CalendarEvent('change', $event)">
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker #picker1></mat-datepicker>
