@@ -291,7 +291,21 @@ export class NewChartComponent implements OnInit {
             ticks: {
               beginAtZero: true
             }
-          }]
+          }],
+          xAxes: [{
+            type: 'time',
+            time: {
+              parser: 'HH:mm:ss',
+              tooltipFormat: 'HH:mm',
+              unit: 'second',
+              stepSize: 1800,
+            },
+            display: true,
+            scaleLabel: {
+                display: true,
+                labelString: 'Time'
+            }
+         }],
         },
       } as ChartOptions
     });
