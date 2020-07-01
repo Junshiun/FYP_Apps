@@ -201,24 +201,34 @@ export class CompareComponent implements OnInit {
                 }
             ]
         },
+        /*
         tooltips: {
           mode: 'index',
           intersect: false,
         },
+        */
         hover: {
           mode: 'nearest',
           intersect: true
         },
         scales: {
           xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Date'
+            },
             ticks: {
               beginAtZero: false,
               stepSize: 1,
             }
           }],
           yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Concentration of Cl2 gas (ppm)'
+            },
             ticks: {
-              beginAtZero: true
+              beginAtZero: false
             }
           }]
         },

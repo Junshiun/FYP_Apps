@@ -30,6 +30,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { CompareComponent } from './compare/compare.component';
+import { DateComponent } from './date/date.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CompareComponent } from './compare/compare.component';
     ScheduleComponent,
     NewChartComponent,
     CompareComponent,
+    DateComponent,
   ],
   imports: [
     BrowserModule,

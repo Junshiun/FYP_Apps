@@ -42,12 +42,12 @@ export class NewChartComponent implements OnInit {
 
   constructor(public db: AngularFireDatabase) {
     this.MinDate = new Date('3/1/2020');
-    this.checkforupdate();
+    // this.checkforupdate();
   }
 
   ngOnInit() {
     this.thisFunction();
-    this.Upload();
+    // this.Upload();
   }
 
   /*
@@ -241,26 +241,32 @@ export class NewChartComponent implements OnInit {
         datasets: [
           {
             label: 'Node 1',
-            data: key[0].slice(-180),
+            data: key[0],
             showLine: true,
             fill: false,
             borderColor: 'rgba(0, 200, 0, 1)',
+            borderWidth: 0.5,
+            pointRadius: 0,
             lineTension: 0
           },
           {
             label: 'Node 2',
-            data: key[1].slice(-180),
+            data: key[1],
             showLine: true,
             fill: false,
             borderColor: 'rgba(46, 134, 178)',
+            borderWidth: 0.5,
+            pointRadius: 0,
             lineTension: 0
           },
           {
             label: 'Node 3',
-            data: key[2].slice(-180),
+            data: key[2],
             showLine: true,
             fill: false,
             borderColor: 'rgba(206, 17, 17)',
+            borderWidth: 0.5,
+            pointRadius: 0,
             lineTension: 0
           },
         ]
@@ -278,18 +284,23 @@ export class NewChartComponent implements OnInit {
                 }
             ]
         },
+        /*
         tooltips: {
           mode: 'index',
           intersect: false,
-        },
+        },*/
         hover: {
           mode: 'nearest',
           intersect: true
         },
         scales: {
           yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Concentration of Cl2 gas (ppm)'
+            },
             ticks: {
-              beginAtZero: true
+              beginAtZero: false
             }
           }],
           xAxes: [{
